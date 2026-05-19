@@ -130,8 +130,8 @@
         <div class="coupon-box">
             <div class="coupon-label">Use o cupom:</div>
             <div class="coupon-code" id="couponCode">CARREGANDO...</div>
-            <button class="copy-button" onclick="copyCoupon()">📋 Copiar Cupom</button>
-            <button class="copy-button" onclick="openLink()">🔗 Usar Agora</button>
+            <button class="copy-button" data-action="copy">📋 Copiar Cupom</button>
+            <button class="copy-button" data-action="open">🔗 Usar Agora</button>
             <div class="copied-message" id="copiedMessage">✅ Cupom copiado!</div>
         </div>
 
@@ -142,47 +142,6 @@
     </div>
 
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <script>
-        let currentCoupon = 'HARDLINE10';
-        let targetLink = 'https://hardline.gg/';
-
-        window.Twitch.ext.onAuthorized((auth) => {
-            console.log('Panel autorizado:', auth);
-        });
-
-        window.Twitch.ext.configuration.onChanged(() => {
-            const config = window.Twitch.ext.configuration.broadcaster;
-            if (config) {
-                try {
-                    const data = JSON.parse(config.content);
-                    if (data.coupon) {
-                        currentCoupon = data.coupon;
-                        document.getElementById('couponCode').textContent = currentCoupon;
-                    }
-                    if (data.link) {
-                        targetLink = data.link;
-                    }
-                } catch (e) {
-                    console.error('Erro ao parse da configuração:', e);
-                }
-            }
-        });
-
-        function copyCoupon() {
-            navigator.clipboard.writeText(currentCoupon).then(() => {
-                const msg = document.getElementById('copiedMessage');
-                msg.classList.add('show');
-                setTimeout(() => {
-                    msg.classList.remove('show');
-                }, 2000);
-            });
-        }
-
-        function openLink() {
-            window.open(targetLink, '_blank');
-        }
-
-        document.getElementById('couponCode').textContent = currentCoupon;
-    </script>
+    <script src="panel.js"></script>
 </body>
 </html>

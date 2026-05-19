@@ -225,7 +225,7 @@
     <div class="overlay-container">
         <div class="coupon-display" id="couponDisplay">
             <div class="hardline-text">HARD<span class="line">LINE</span></div>
-            <div class="coupon-container" id="couponContainer" onclick="showLink()">
+            <div class="coupon-container" id="couponContainer">
                 <div class="coupon-label">CUPOM:</div>
                 <div class="coupon-code" id="couponCode">HARDLINE10</div>
                 <div class="click-hint">👆 CLIQUE AQUI</div>
@@ -234,87 +234,16 @@
         </div>
     </div>
 
-    <div class="link-overlay" id="linkOverlay" onclick="closeLink()">
-        <div class="link-content" onclick="event.stopPropagation();">
+    <div class="link-overlay" id="linkOverlay">
+        <div class="link-content" id="linkContent">
             <h2>🎉 Use seu cupom!</h2>
             <p id="couponText" style="font-size: 36px; font-weight: bold; color: #00d9ff; margin: 25px 0; text-shadow: 0 0 30px rgba(0, 217, 255, 1); letter-spacing: 6px;">HARDLINE10</p>
-            <button onclick="openLink()">🚀 IR PARA O SITE</button>
-            <button class="close-btn" onclick="closeLink()">✖ FECHAR</button>
+            <button id="openLinkBtn">🚀 IR PARA O SITE</button>
+            <button class="close-btn" id="closeLinkBtn">✖ FECHAR</button>
         </div>
     </div>
 
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <script>
-        let currentCoupon = 'HARDLINE10';
-        let targetLink = 'https://hardline.gg/';
-
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        console.log('🎮 HARDLINE EXTENSION');
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        console.log('✅ Overlay carregado e VISÍVEL');
-        console.log('📍 Posição: Canto superior direito');
-        console.log('🎫 Cupom: ' + currentCoupon);
-        console.log('🔗 Link: ' + targetLink);
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-
-        // Funções globais para onClick
-        function showLink() {
-            console.log('👆 Clique detectado! Abrindo modal...');
-            document.getElementById('linkOverlay').classList.add('show');
-            document.getElementById('couponText').textContent = currentCoupon;
-        }
-
-        function closeLink() {
-            console.log('✖ Fechando modal...');
-            document.getElementById('linkOverlay').classList.remove('show');
-        }
-
-        function openLink() {
-            console.log('🚀 Abrindo link:', targetLink);
-            window.open(targetLink, '_blank');
-            closeLink();
-        }
-
-        // Inicializar Twitch Extension
-        if (window.Twitch && window.Twitch.ext) {
-            console.log('✅ Twitch SDK encontrado');
-            
-            window.Twitch.ext.onAuthorized((auth) => {
-                console.log('✅ Extension autorizada:', auth);
-            });
-
-            // Escutar atualizações do broadcaster
-            window.Twitch.ext.configuration.onChanged(() => {
-                const config = window.Twitch.ext.configuration.broadcaster;
-                if (config) {
-                    try {
-                        const data = JSON.parse(config.content);
-                        console.log('📥 Nova configuração recebida:', data);
-                        
-                        if (data.coupon) {
-                            currentCoupon = data.coupon;
-                            document.getElementById('couponCode').textContent = currentCoupon;
-                            document.getElementById('couponText').textContent = currentCoupon;
-                            console.log('🎫 Cupom atualizado:', currentCoupon);
-                        }
-                        if (data.link) {
-                            targetLink = data.link;
-                            console.log('🔗 Link atualizado:', targetLink);
-                        }
-                    } catch (e) {
-                        console.error('❌ Erro ao parse da configuração:', e);
-                    }
-                }
-            });
-        } else {
-            console.warn('⚠️ Twitch SDK não encontrado (normal se testar localmente)');
-        }
-
-        // Atualizar o cupom inicial
-        document.getElementById('couponCode').textContent = currentCoupon;
-        document.getElementById('couponText').textContent = currentCoupon;
-        
-        console.log('✅ Inicialização completa!');
-    </script>
+    <script src="video_overlay.js"></script>
 </body>
 </html>
