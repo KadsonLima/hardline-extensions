@@ -35,14 +35,13 @@
 
         .coupon-display {
             background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
-            border: 8px solid #00d9ff;
-            padding: 80px 100px;
-            border-radius: 40px;
+            border: 6px solid #00d9ff;
+            padding: 30px 40px;
+            border-radius: 30px;
             box-shadow: 0 20px 100px rgba(0, 217, 255, 0.7), 0 0 80px rgba(0, 217, 255, 0.5);
             opacity: 1;
             transform: scale(1);
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 600px;
             animation: pulseGlow 3s infinite;
             text-align: center;
         }
@@ -58,11 +57,11 @@
 
         .hardline-text {
             color: #fff;
-            font-size: 120px;
+            font-size: 50px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 20px;
-            margin-bottom: 50px;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
             text-shadow: 0 0 40px rgba(0, 217, 255, 1), 5px 5px 15px rgba(0, 0, 0, 0.8);
             animation: textPulse 2s infinite;
         }
@@ -79,9 +78,9 @@
 
         .coupon-container {
             background: rgba(0, 217, 255, 0.15);
-            border: 4px solid rgba(0, 217, 255, 0.5);
-            padding: 30px;
-            border-radius: 18px;
+            border: 3px solid rgba(0, 217, 255, 0.5);
+            padding: 20px;
+            border-radius: 15px;
             backdrop-filter: blur(12px);
             cursor: pointer;
             transition: all 0.3s;
@@ -95,19 +94,19 @@
 
         .coupon-label {
             color: #fff;
-            font-size: 42px;
+            font-size: 24px;
             text-transform: uppercase;
-            letter-spacing: 8px;
-            margin-bottom: 25px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
             opacity: 0.95;
             font-weight: 600;
         }
 
         .coupon-code {
             color: #00d9ff;
-            font-size: 110px;
+            font-size: 46px;
             font-weight: 700;
-            letter-spacing: 18px;
+            letter-spacing: 8px;
             font-family: 'Rajdhani', 'Courier New', monospace;
             text-shadow: 0 0 50px rgba(0, 217, 255, 1), 
                          0 0 80px rgba(0, 217, 255, 0.9),
@@ -126,23 +125,23 @@
 
         .click-hint {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 36px;
-            margin-top: 30px;
+            font-size: 18px;
+            margin-top: 12px;
             text-align: center;
-            letter-spacing: 5px;
+            letter-spacing: 2px;
             font-weight: 600;
             animation: bounce 2s infinite;
         }
         
         .chat-command {
             color: rgba(255, 255, 255, 0.85);
-            font-size: 38px;
-            margin-top: 50px;
+            font-size: 16px;
+            margin-top: 20px;
             text-align: center;
-            letter-spacing: 3px;
+            letter-spacing: 1px;
             font-weight: 600;
-            padding-top: 30px;
-            border-top: 3px solid rgba(0, 217, 255, 0.3);
+            padding-top: 15px;
+            border-top: 2px solid rgba(0, 217, 255, 0.3);
         }
         
         .chat-command .command {
@@ -176,19 +175,19 @@
         .link-content {
             background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
             border: 5px solid #00d9ff;
-            padding: 60px;
-            border-radius: 30px;
+            padding: 40px;
+            border-radius: 25px;
             text-align: center;
-            max-width: 650px;
+            max-width: 500px;
             box-shadow: 0 0 70px rgba(0, 217, 255, 0.7);
         }
 
         .link-content h2 {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             color: #00d9ff;
             font-family: 'Rajdhani', sans-serif;
             font-weight: 700;
-            font-size: 48px;
+            font-size: 32px;
             text-shadow: 0 0 25px rgba(0, 217, 255, 0.9);
         }
 
@@ -196,12 +195,12 @@
             background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
             color: #0f0f1e;
             border: none;
-            padding: 20px 50px;
-            border-radius: 40px;
-            font-size: 24px;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            margin: 15px;
+            margin: 10px;
             transition: all 0.3s;
             font-family: 'Rajdhani', sans-serif;
         }
@@ -237,7 +236,7 @@
     <div class="link-overlay" id="linkOverlay" onclick="closeLink()">
         <div class="link-content" onclick="event.stopPropagation();">
             <h2>🎉 Use seu cupom!</h2>
-            <p id="couponText" style="font-size: 54px; font-weight: bold; color: #00d9ff; margin: 35px 0; text-shadow: 0 0 30px rgba(0, 217, 255, 1); letter-spacing: 8px;">HARDLINE10</p>
+            <p id="couponText" style="font-size: 36px; font-weight: bold; color: #00d9ff; margin: 25px 0; text-shadow: 0 0 30px rgba(0, 217, 255, 1); letter-spacing: 6px;">HARDLINE10</p>
             <button onclick="openLink()">🚀 IR PARA O SITE</button>
             <button class="close-btn" onclick="closeLink()">✖ FECHAR</button>
         </div>
