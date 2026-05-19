@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hardline Panel - TEST</title>
+    <style>
+        body {
+            background: #1a1a2e;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 15px;
+            margin: 0;
+        }
+        h2 { color: #00d9ff; font-size: 20px; }
+        .box { 
+            background: rgba(0,217,255,0.1);
+            padding: 15px;
+            border: 2px solid #00d9ff;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>🎮 HARDLINE - TESTE</h2>
+    <div class="box">
+        <p>✅ Panel carregando...</p>
+        <p id="status">Verificando...</p>
+    </div>
+    
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script>
+        console.log('Panel: Script iniciado');
+        
+        if (window.Twitch && window.Twitch.ext) {
+            document.getElementById('status').textContent = '✅ SDK OK! Aguardando auth...';
+            
+            window.Twitch.ext.onAuthorized(function(auth) {
+                document.getElementById('status').innerHTML = '<strong>✅ FUNCIONANDO!</strong>';
+                console.log('✅ Panel autorizado');
+            });
+        } else {
+            document.getElementById('status').textContent = '❌ Twitch SDK falhou';
+        }
+    </script>
+</body>
+</html>
