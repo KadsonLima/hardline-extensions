@@ -1,0 +1,32 @@
+{
+  "manifest_version": 1,
+  "version": "1.0.0",
+  "name": "Hardline Cupons",
+  "description": "Exibe cupons promocionais na tela com transição animada",
+  "author": "Seu Nome",
+  "support_email": "seu.email@exemplo.com",
+  "icon_url": "https://seu-dominio.com/icon.png",
+  "panel": {
+    "viewer_url": "https://seu-dominio.com/panel.html",
+    "height": 300,
+    "can_link_external_content": true
+  },
+  "video_overlay": {
+    "viewer_url": "https://seu-dominio.com/video_overlay.html",
+    "can_link_external_content": true
+  },
+  "config": {
+    "viewer_url": "https://seu-dominio.com/config.html"
+  },
+  "views": {
+    "mobile": {
+      "viewer_url": "https://seu-dominio.com/mobile.html"
+    }
+  },
+  "state": {
+    "broadcaster": true
+  },
+  "panel_height": 300,
+  "required_broadcaster_abilities": [],
+  "request_identity_link": false
+}

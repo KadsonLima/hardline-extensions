@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardline Cupons - Mobile</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            padding: 15px;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .mobile-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .logo .line {
+            color: #00d9ff;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .coupon-card {
+            background: rgba(0, 217, 255, 0.1);
+            border: 2px solid #00d9ff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            backdrop-filter: blur(10px);
+            margin: 0 auto 20px;
+            max-width: 350px;
+            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.3), 0 0 20px rgba(0, 217, 255, 0.1);
+        }
+
+        .coupon-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .coupon-code {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            font-family: 'Rajdhani', 'Courier New', monospace;
+            margin-bottom: 20px;
+            word-break: break-all;
+            line-height: 1.2;
+            color: #00d9ff;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
+            color: #0f0f1e;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .btn-secondary {
+            background: rgba(0, 217, 255, 0.2);
+            color: #00d9ff;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 217, 255, 0.4);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .info-section {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            backdrop-filter: blur(5px);
+            max-width: 350px;
+            margin: 30px auto 0;
+        }
+
+        .info-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .copied-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .copied-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .emoji {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <div class="logo">
+            🎮 HARD<span class="line">LINE</span>
+        </div>
+
+        <div class="coupon-card">
+            <div class="coupon-label">
+                <span class="emoji">🎟️</span> Use o Cupom
+            </div>
+            <div class="coupon-code" id="couponCode">CARREGANDO...</div>
+            
+            <div class="button-container">
+                <button class="btn btn-primary" onclick="openLink()">
+                    <span class="emoji">🔗</span>
+                    Usar Cupom Agora
+                </button>
+                <button class="btn btn-secondary" onclick="copyCoupon()">
+                    <span class="emoji">📋</span>
+                    Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>💡 Como usar?</h3>
+            <p>
+                1. Copie o código do cupom<br>
+                2. Clique em "Usar Cupom Agora"<br>
+                3. Cole o código no checkout<br>
+                4. Aproveite seu desconto! 🎉
+            </p>
+        </div>
+    </div>
+
+    <div class="copied-toast" id="copiedToast">
+        ✅ Cupom copiado!
+    </div>
+
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script>
+        let currentCoupon = 'HARDLINE10';
+        let targetLink = 'https://hardline.gg/';
+
+        // Inicializar Twitch Extension
+        window.Twitch.ext.onAuthorized((auth) => {
+            console.log('Mobile extension autorizada:', auth);
+        });
+
+        // Escutar atualizações do broadcaster
+        window.Twitch.ext.configuration.onChanged(() => {
+            const config = window.Twitch.ext.configuration.broadcaster;
+            if (config) {
+                try {
+                    const data = JSON.parse(config.content);
+                    if (data.coupon) {
+                        currentCoupon = data.coupon;
+                        document.getElementById('couponCode').textContent = currentCoupon;
+                    }
+                    if (data.link) {
+                        targetLink = data.link;
+                    }
+                } catch (e) {
+                    console.error('Erro ao parse da configuração:', e);
+                }
+            }
+        });
+
+        function copyCoupon() {
+            // Para mobile, usar a Clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(currentCoupon).then(() => {
+                    showToast();
+                }).catch(err => {
+                    // Fallback para iOS
+                    fallbackCopy();
+                });
+            } else {
+                fallbackCopy();
+            }
+        }
+
+        function fallbackCopy() {
+            // Método alternativo para dispositivos que não suportam clipboard API
+            const textArea = document.createElement('textarea');
+            textArea.value = currentCoupon;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                alert('Cupom: ' + currentCoupon);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('copiedToast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        function openLink() {
+            // Abrir link em nova aba
+            window.open(targetLink, '_blank');
+        }
+
+        // Definir cupom inicial
+        document.getElementById('couponCode').textContent = currentCoupon;
+    </script>
+</body>
+</html>

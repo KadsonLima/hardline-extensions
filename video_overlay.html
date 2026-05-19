@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardline Cupons - Overlay</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .overlay-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .coupon-display {
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            border: 2px solid #00d9ff;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3), 0 0 20px rgba(0, 217, 255, 0.1);
+            opacity: 0;
+            transform: translateX(400px);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-width: 300px;
+        }
+
+        .coupon-display.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hardline-text {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hardline-text .line {
+            color: #00d9ff;
+        }
+
+        .coupon-container {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .coupon-container.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .coupon-label {
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .coupon-code {
+            color: #00d9ff;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            font-family: 'Rajdhani', 'Courier New', monospace;
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.2s, text-shadow 0.2s;
+        }
+
+        .coupon-code:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 25px rgba(0, 217, 255, 1), 0 0 35px rgba(0, 217, 255, 0.6);
+        }
+
+        .click-hint {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .link-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .link-overlay.show {
+            display: flex;
+        }
+
+        .link-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .link-content h2 {
+            margin-bottom: 15px;
+            color: #00d9ff;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+        }
+
+        .link-content button {
+            background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
+            color: #0f0f1e;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .link-content button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-container">
+        <div class="coupon-display" id="couponDisplay">
+            <div class="hardline-text pulse">HARD<span class="line">LINE</span></div>
+            <div class="coupon-container" id="couponContainer">
+                <div class="coupon-label">Cupom:</div>
+                <div class="coupon-code" id="couponCode" onclick="showLink()">CARREGANDO...</div>
+                <div class="click-hint">Clique para usar o cupom</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="link-overlay" id="linkOverlay">
+        <div class="link-content">
+            <h2>🎉 Use seu cupom agora!</h2>
+            <p id="couponText" style="font-size: 24px; font-weight: bold; margin: 20px 0; color: #667eea;"></p>
+            <button onclick="openLink()">Ir para o site</button>
+            <button onclick="closeLink()" style="background: #ccc;">Fechar</button>
+        </div>
+    </div>
+
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script>
+        let currentCoupon = 'HARDLINE10';
+        let targetLink = 'https://hardline.gg/';
+
+        // Inicializar Twitch Extension
+        window.Twitch.ext.onAuthorized((auth) => {
+            console.log('Extension autorizada:', auth);
+            
+            // Mostrar o overlay após 2 segundos
+            setTimeout(() => {
+                document.getElementById('couponDisplay').classList.add('show');
+                
+                // Mostrar o cupom após mais 1 segundo
+                setTimeout(() => {
+                    document.getElementById('couponContainer').classList.add('show');
+                }, 1000);
+            }, 2000);
+        });
+
+        // Escutar atualizações do broadcaster
+        window.Twitch.ext.configuration.onChanged(() => {
+            const config = window.Twitch.ext.configuration.broadcaster;
+            if (config) {
+                try {
+                    const data = JSON.parse(config.content);
+                    if (data.coupon) {
+                        currentCoupon = data.coupon;
+                        document.getElementById('couponCode').textContent = currentCoupon;
+                    }
+                    if (data.link) {
+                        targetLink = data.link;
+                    }
+                } catch (e) {
+                    console.error('Erro ao parse da configuração:', e);
+                }
+            }
+        });
+
+        function showLink() {
+            document.getElementById('linkOverlay').classList.add('show');
+            document.getElementById('couponText').textContent = currentCoupon;
+        }
+
+        function closeLink() {
+            document.getElementById('linkOverlay').classList.remove('show');
+        }
+
+        function openLink() {
+            window.open(targetLink, '_blank');
+            closeLink();
+        }
+
+        // Atualizar o cupom inicial
+        document.getElementById('couponCode').textContent = currentCoupon;
+    </script>
+</body>
+</html>
