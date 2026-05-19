@@ -1,0 +1,88 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  COMO FAZER UPLOAD DA EXTENSÃO HARDLINE PARA TWITCH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ IMPORTANTE: Leia este arquivo antes de fazer o upload!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PASSO 1: CRIAR O ARQUIVO ZIP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Dê duplo clique no arquivo: criar-zip-twitch.bat
+
+2. Uma janela preta irá abrir e criar o arquivo: hardline-twitch.zip
+
+3. Este arquivo ZIP contém TODOS os arquivos necessários:
+   ✓ video_overlay.html + video_overlay.js
+   ✓ config.html + config.js
+   ✓ panel.html + panel.js
+   ✓ mobile.html + mobile.js
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PASSO 2: FAZER UPLOAD NA TWITCH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Acesse: https://dev.twitch.tv/console/extensions
+
+2. Clique na sua extensão (ou crie uma nova se ainda não criou)
+
+3. No menu lateral, clique em "Files"
+
+4. Clique no botão "Upload Assets"
+
+5. Selecione o arquivo: hardline-twitch.zip
+
+6. Aguarde o upload completar (2-5 minutos)
+
+7. Você verá uma mensagem de sucesso quando terminar
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PASSO 3: TESTAR A EXTENSÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Na página da extensão, clique em "View on Twitch"
+
+2. Configure o cupom na aba de configuração
+
+3. Ative a extensão como overlay
+
+4. Verifique se aparece na tela
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ❌ ERRO COMUM: "404 Not Found" ou "MIME type not executable"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEMA: 
+  Você fez upload apenas dos arquivos .html
+
+SOLUÇÃO: 
+  1. Execute novamente o arquivo: criar-zip-twitch.bat
+  2. Faça upload do hardline-twitch.zip completo
+  3. Os arquivos .js são OBRIGATÓRIOS!
+
+POR QUE PRECISO DOS ARQUIVOS .JS?
+  A Twitch exige que o código JavaScript seja separado dos arquivos
+  HTML por questões de segurança (Content Security Policy - CSP).
+  Sem os arquivos .js, a extensão não funciona!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📝 CHECKLIST DE VERIFICAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Antes de fazer upload, verifique:
+
+□ Executei o arquivo criar-zip-twitch.bat
+□ O arquivo hardline-twitch.zip foi criado
+□ Fiz upload do arquivo .zip completo (não apenas os .html)
+□ Aguardei o processamento completar
+□ Testei a extensão no meu canal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🆘 PRECISA DE AJUDA?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Documentação Twitch: https://dev.twitch.tv/docs/extensions
+- Fórum: https://discuss.dev.twitch.tv/
+- README.md: Documentação completa neste projeto
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

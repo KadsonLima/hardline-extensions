@@ -10,6 +10,34 @@ Esta extensão permite que streamers:
 - Ofereçam uma experiência visual atraente para os viewers
 - Facilitem a conversão de viewers em clientes
 
+## ⚡ Quick Start - Upload para Twitch
+
+### 📦 Criar o Pacote de Upload
+
+1. **Execute o script de criação do ZIP:**
+   ```
+   criar-zip-twitch.bat
+   ```
+   
+2. **Arquivos incluídos automaticamente:**
+   - ✅ `video_overlay.html` + `video_overlay.js`
+   - ✅ `config.html` + `config.js`
+   - ✅ `panel.html` + `panel.js`
+   - ✅ `mobile.html` + `mobile.js`
+
+3. **Resultado:** Arquivo `hardline-twitch.zip` criado na pasta
+
+### 📤 Upload na Twitch
+
+1. Acesse https://dev.twitch.tv/console/extensions
+2. Selecione sua extensão (ou crie uma nova)
+3. Vá em **"Files"** > **"Upload Assets"**
+4. Faça o upload do arquivo `hardline-twitch.zip`
+5. Aguarde o processamento (2-5 minutos)
+6. Teste sua extensão!
+
+> **⚠️ IMPORTANTE:** NÃO faça upload apenas dos arquivos .html! O script `criar-zip-twitch.bat` garante que TODOS os arquivos necessários (.html + .js) sejam incluídos.
+
 ## 🚀 Processo Completo de Publicação
 
 ### 1. **Pré-requisitos**
@@ -37,10 +65,17 @@ Os arquivos HTML precisam estar acessíveis via HTTPS:
 ```
 https://seu-dominio.com/
 ├── video_overlay.html
+├── video_overlay.js
 ├── config.html
+├── config.js
 ├── panel.html
+├── panel.js
+├── mobile.html
+├── mobile.js
 └── icon.png (128x128px)
 ```
+
+> **⚠️ IMPORTANTE:** Os arquivos `.js` são obrigatórios! Eles contêm o código JavaScript que foi separado dos arquivos HTML para cumprir com a Content Security Policy (CSP) da Twitch.
 
 ### 3. **Criar a Extensão no Twitch Developers**
 
@@ -173,6 +208,22 @@ transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 5. **Salvar** - pronto! ✅
 
 ## 🔧 Troubleshooting
+
+### ❌ Erro: "404 (Not Found)" ou "MIME type not executable"
+
+**Problema:** Os arquivos `.js` não foram incluídos no upload da extensão.
+
+**Solução:**
+1. Execute o arquivo `criar-zip-twitch.bat` 
+2. Este script cria um ZIP contendo TODOS os arquivos necessários:
+   - `video_overlay.html` + `video_overlay.js`
+   - `config.html` + `config.js`
+   - `panel.html` + `panel.js`
+   - `mobile.html` + `mobile.js`
+3. Faça upload do novo `hardline-twitch.zip` na Twitch
+4. Aguarde alguns minutos e teste novamente
+
+> **Por que isso acontece?** Para cumprir com a Content Security Policy (CSP) da Twitch, o código JavaScript foi separado dos arquivos HTML. Ambos precisam estar hospedados juntos.
 
 ### Extensão não aparece
 - Verifique se os arquivos estão acessíveis via HTTPS
