@@ -28,39 +28,33 @@
 
         .coupon-display {
             background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
-            border: 3px solid #00d9ff;
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.5), 0 0 30px rgba(0, 217, 255, 0.3);
-            /* VISÍVEL IMEDIATAMENTE */
+            border: 5px solid #00d9ff;
+            padding: 40px 50px;
+            border-radius: 25px;
+            box-shadow: 0 10px 50px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.4);
             opacity: 1;
             transform: translateX(0);
-            min-width: 320px;
+            min-width: 500px;
             animation: pulseGlow 3s infinite;
         }
 
         @keyframes pulseGlow {
             0%, 100% {
-                box-shadow: 0 10px 40px rgba(0, 217, 255, 0.5), 0 0 30px rgba(0, 217, 255, 0.3);
+                box-shadow: 0 10px 50px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.4);
             }
             50% {
-                box-shadow: 0 10px 50px rgba(0, 217, 255, 0.8), 0 0 50px rgba(0, 217, 255, 0.5);
+                box-shadow: 0 10px 60px rgba(0, 217, 255, 0.9), 0 0 60px rgba(0, 217, 255, 0.6);
             }
-        }
-
-        .coupon-display.show {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         .hardline-text {
             color: #fff;
-            font-size: 32px;
+            font-size: 56px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-            text-shadow: 0 0 15px rgba(0, 217, 255, 0.7), 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 8px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.6);
             animation: textPulse 2s infinite;
         }
         
@@ -71,88 +65,69 @@
         
         .hardline-text .line {
             color: #00d9ff;
-            text-shadow: 0 0 20px rgba(0, 217, 255, 1), 0 0 30px rgba(0, 217, 255, 0.7);
+            text-shadow: 0 0 25px rgba(0, 217, 255, 1), 0 0 40px rgba(0, 217, 255, 0.8);
         }
 
         .coupon-container {
             background: rgba(0, 217, 255, 0.15);
-            border: 2px solid rgba(0, 217, 255, 0.4);
-            padding: 18px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            /* VISÍVEL IMEDIATAMENTE */
-            opacity: 1;
-            transform: scale(1);
+            border: 4px solid rgba(0, 217, 255, 0.5);
+            padding: 30px;
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+            transition: all 0.3s;
         }
-
-        .coupon-container.show {
-            opacity: 1;
-            transform: scale(1);
+        
+        .coupon-container:hover {
+            background: rgba(0, 217, 255, 0.28);
+            border-color: rgba(0, 217, 255, 0.8);
+            transform: scale(1.03);
         }
 
         .coupon-label {
             color: #fff;
-            font-size: 14px;
-            text-transfo6px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+
+        .coupon-code {
+            color: #00d9ff;
+            font-size: 62px;
             font-weight: 700;
-            letter-spacing: 5px;
+            letter-spacing: 10px;
             font-family: 'Rajdhani', 'Courier New', monospace;
-            text-shadow: 0 0 20px rgba(0, 217, 255, 1), 
-                         0 0 40px rgba(0, 217, 255, 0.6),
-                         2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 30px rgba(0, 217, 255, 1), 
+                         0 0 50px rgba(0, 217, 255, 0.8),
+                         3px 3px 8px rgba(0, 0, 0, 0.7);
             cursor: pointer;
             transition: all 0.3s;
-            word-break: break-all;
+            word-break: keep-all;
+            user-select: none;
         }
 
         .coupon-code:hover {
             transform: scale(1.08);
-            text-shadow: 0 0 30px rgba(0, 217, 255, 1), 
-                         0 0 50px rgba(0, 217, 255, 0.8);
+            text-shadow: 0 0 35px rgba(0, 217, 255, 1), 
+                         0 0 60px rgba(0, 217, 255, 0.9);
         }
 
         .click-hint {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 12px;
-            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 20px;
+            margin-top: 15px;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            animation: bounce 2s infinite;
         }
         
-        .status-indicator {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 12px;
-            height: 12px;
-            background: #00ff00;
-            border-radius: 50%;
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }px rgba(0, 217, 255, 1), 0 0 35px rgba(0, 217, 255, 0.6);
-        }
-
-        .click-hint {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 11px;
-            margin-top: 5px;
-            text-align: center;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         .link-overlay {
@@ -173,59 +148,71 @@
         }
 
         .link-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            border: 5px solid #00d9ff;
+            padding: 60px;
+            border-radius: 30px;
             text-align: center;
-            max-width: 400px;
+            max-width: 650px;
+            box-shadow: 0 0 70px rgba(0, 217, 255, 0.7);
         }
 
         .link-content h2 {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
             color: #00d9ff;
             font-family: 'Rajdhani', sans-serif;
             font-weight: 700;
+            font-size: 48px;
+            text-shadow: 0 0 25px rgba(0, 217, 255, 0.9);
         }
 
         .link-content button {
             background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
-            color: #0f0fstatus-indicator" title="Extensão ativa"></div>
-            <div class="hardline-text">HARD<span class="line">LINE</span></div>
-            <div class="coupon-container" id="couponContainer">
-                <div class="coupon-label">Cupom:</div>
-                <div class="coupon-code" id="couponCode" onclick="showLink()">HARDLINE10</div>
-                <div class="click-hint">👆 
+            color: #0f0f1e;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 40px;
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            margin: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 15px;
+            transition: all 0.3s;
             font-family: 'Rajdhani', sans-serif;
         }
 
         .link-content button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.8);
+        }
+        
+        .link-content button.close-btn {
+            background: linear-gradient(135deg, #555 0%, #333 100%);
+            color: #fff;
+        }
+        
+        .link-content button.close-btn:hover {
+            background: linear-gradient(135deg, #666 0%, #444 100%);
         }
     </style>
 </head>
 <body>
     <div class="overlay-container">
         <div class="coupon-display" id="couponDisplay">
-            <div class="hardline-text pulse">HARD<span class="line">LINE</span></div>
-            <div class="coupon-container" id="couponContainer">
-                <div class="coupon-label">Cupom:</div>
-                <div class="coupon-code" id="couponCode" onclick="showLink()">CARREGANDO...</div>
-                <div class="click-hint">Clique para usar o cupom</div>
+            <div class="hardline-text">HARD<span class="line">LINE</span></div>
+            <div class="coupon-container" id="couponContainer" onclick="showLink()">
+                <div class="coupon-label">CUPOM:</div>
+                <div class="coupon-code" id="couponCode">HARDLINE10</div>
+                <div class="click-hint">👆 CLIQUE AQUI</div>
             </div>
         </div>
     </div>
 
-    <div class="link-overlay" id="linkOverlay">
-        <div class="link-content">
-            <h2>🎉 Use seu cupom agora!</h2>
-            <p id="couponText" style="font-size: 24px; font-weight: bold; margin: 20px 0; color: #667eea;"></p>
-            <button onclick="openLink()">Ir para o site</button>
-            <button onclick="closeLink()" style="background: #ccc;">Fechar</button>
+    <div class="link-overlay" id="linkOverlay" onclick="closeLink()">
+        <div class="link-content" onclick="event.stopPropagation();">
+            <h2>🎉 Use seu cupom!</h2>
+            <p id="couponText" style="font-size: 54px; font-weight: bold; color: #00d9ff; margin: 35px 0; text-shadow: 0 0 30px rgba(0, 217, 255, 1); letter-spacing: 8px;">HARDLINE10</p>
+            <button onclick="openLink()">🚀 IR PARA O SITE</button>
+            <button class="close-btn" onclick="closeLink()">✖ FECHAR</button>
         </div>
     </div>
 
@@ -233,14 +220,33 @@
     <script>
         let currentCoupon = 'HARDLINE10';
         let targetLink = 'https://hardline.gg/';
-console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
         console.log('🎮 HARDLINE EXTENSION');
         console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
         console.log('✅ Overlay carregado e VISÍVEL');
         console.log('📍 Posição: Canto superior direito');
-        console.log('Cupom: ' + currentCoupon);
-        console.log('Link: ' + targetLink);
+        console.log('🎫 Cupom: ' + currentCoupon);
+        console.log('🔗 Link: ' + targetLink);
         console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+        // Funções globais para onClick
+        function showLink() {
+            console.log('👆 Clique detectado! Abrindo modal...');
+            document.getElementById('linkOverlay').classList.add('show');
+            document.getElementById('couponText').textContent = currentCoupon;
+        }
+
+        function closeLink() {
+            console.log('✖ Fechando modal...');
+            document.getElementById('linkOverlay').classList.remove('show');
+        }
+
+        function openLink() {
+            console.log('🚀 Abrindo link:', targetLink);
+            window.open(targetLink, '_blank');
+            closeLink();
+        }
 
         // Inicializar Twitch Extension
         if (window.Twitch && window.Twitch.ext) {
@@ -248,8 +254,6 @@ console.log('━━━━━━━━━━━━━━━━━━━━━━�
             
             window.Twitch.ext.onAuthorized((auth) => {
                 console.log('✅ Extension autorizada:', auth);
-                document.getElementById('couponDisplay').classList.add('show');
-                document.getElementById('couponContainer').classList.add('show');
             });
 
             // Escutar atualizações do broadcaster
@@ -258,16 +262,20 @@ console.log('━━━━━━━━━━━━━━━━━━━━━━�
                 if (config) {
                     try {
                         const data = JSON.parse(config.content);
+                        console.log('📥 Nova configuração recebida:', data);
+                        
                         if (data.coupon) {
                             currentCoupon = data.coupon;
                             document.getElementById('couponCode').textContent = currentCoupon;
                             document.getElementById('couponText').textContent = currentCoupon;
+                            console.log('🎫 Cupom atualizado:', currentCoupon);
                         }
                         if (data.link) {
                             targetLink = data.link;
+                            console.log('🔗 Link atualizado:', targetLink);
                         }
                     } catch (e) {
-                        console.error('Erro ao parse da configuração:', e);
+                        console.error('❌ Erro ao parse da configuração:', e);
                     }
                 }
             });
@@ -275,22 +283,11 @@ console.log('━━━━━━━━━━━━━━━━━━━━━━�
             console.warn('⚠️ Twitch SDK não encontrado (normal se testar localmente)');
         }
 
-        function showLink() {
-            document.getElementById('linkOverlay').classList.add('show');
-            document.getElementById('couponText').textContent = currentCoupon;
-        }
-
-        function closeLink() {
-            document.getElementById('linkOverlay').classList.remove('show');
-        }
-
-        function openLink() {
-            window.open(targetLink, '_blank');
-            closeLink();
-        }
-
         // Atualizar o cupom inicial
         document.getElementById('couponCode').textContent = currentCoupon;
+        document.getElementById('couponText').textContent = currentCoupon;
+        
+        console.log('✅ Inicialização completa!');
     </script>
 </body>
 </html>
