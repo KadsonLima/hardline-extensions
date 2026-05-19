@@ -1,0 +1,104 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  DIAGNOSTICANDO PROBLEMA DE CONFIGURAÇÃO NÃO SALVAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ PROBLEMA IDENTIFICADO:
+   A configuração salva, mas não persiste após F5 (reload)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  POSSÍVEIS CAUSAS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ⚠️ EXTENSÃO EM MODO TESTE (hosted_test)
+   - Configurações em modo teste NÃO são persistidas
+   - Solução: Mover extensão para modo HOSPEDADO
+
+2. ⚠️ VERSÃO INCORRETA NO SET()
+   - Teste: set('broadcaster', '1', config)  ✓
+   - Erro: set('broadcaster', '1.0', config) ✗
+
+3. ⚠️ CACHE DO NAVEGADOR
+   - Limpar cache e cookies da Twitch
+   - Tentar em modo anônimo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SOLUÇÕES APLICADAS NO CÓDIGO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Corrigido: set('broadcaster', '1', config)
+✅ Adicionado: Listener onChanged() para recarregar configuração
+✅ Adicionado: Logs detalhados de diagnóstico
+✅ Adicionado: Verificação pós-save
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  COMO TESTAR:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Execute: criar-zip-twitch.bat
+
+2. Faça upload do novo ZIP na Twitch
+
+3. Abra a configuração da extensão
+
+4. Abra o Console (F12) e observe os logs
+
+5. Altere o cupom e clique em "Salvar"
+
+6. Você deve ver:
+   ✅ Configuração broadcaster salva!
+   🔍 Verificando configuração salva: [Object]
+   ✅ Confirmado: configuração persistida
+
+7. Dê F5 na página
+
+8. Você deve ver nos logs:
+   📥 Carregando configuração...
+   📦 Configurações disponíveis:
+     - Broadcaster: [Object com seu cupom]
+   📦 Dados carregados (broadcaster): {cupom: "KAKAJAMAICA", ...}
+   ✅ Cupom carregado: KAKAJAMAICA
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SE AINDA NÃO FUNCIONAR:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+VERIFIQUE NO CONSOLE APÓS O F5:
+
+❌ Se aparecer: "- Broadcaster: undefined"
+   → Problema: Extensão em modo teste não persiste dados
+   → Solução: Hospedar arquivos e usar modo HOSPEDADO
+
+❌ Se aparecer: "- Broadcaster: {content: null}"
+   → Problema: Configuração não foi salva corretamente
+   → Solução: Verificar permissões da extensão na Twitch
+
+✅ Se aparecer: "- Broadcaster: {content: '{"coupon":"..."}', version: '1'}"
+   → Sucesso: Configuração está sendo salva e lida
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  IMPORTANTE SOBRE MODO TESTE vs HOSPEDADO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MODO TESTE (hosted_test):
+  ❌ Configurações NÃO persistem
+  ❌ Dados são temporários
+  ✓ Útil para testar interface
+
+MODO HOSPEDADO (hosted):
+  ✅ Configurações PERSISTEM
+  ✅ Dados são salvos no servidor Twitch
+  ✅ Extensão funciona como produção
+
+COMO MUDAR PARA HOSPEDADO:
+  1. Hospede os arquivos em um servidor HTTPS
+  2. Configure as URLs na extensão:
+     - Asset Hosting > Video Overlay
+     - Asset Hosting > Config
+  3. Salve e teste novamente
+
+ALTERNATIVA TEMPORÁRIA:
+  - Use o sistema de "Versions" da Twitch
+  - Crie uma nova versão
+  - Essa versão persiste configurações (mas só enquanto ativa)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

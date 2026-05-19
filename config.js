@@ -52,11 +52,19 @@ if (window.Twitch && window.Twitch.ext) {
         twitchAuth = auth;
         isTwitchReady = true;
         console.log('✅ Twitch autorizado:', auth);
+        console.log('📍 Channel ID:', auth.channelId);
+        console.log('📍 User ID:', auth.userId);
         
         // Se DOM já está pronto, carregar config
         if (isDOMReady) {
             loadConfig();
         }
+    });
+
+    // Escutar mudanças na configuração
+    window.Twitch.ext.configuration.onChanged(() => {
+        console.log('🔔 Configuração alterada! Recarregando...');
+        loadConfig();
     });
 } else {
     console.error('❌ Twitch SDK não encontrado!');
@@ -70,11 +78,48 @@ function loadConfig() {
         return;
     }
 
-    const config = window.Twitch.ext.configuration.broadcaster;
-    if (config && config.content) {
+    // Verificar todos os tipos de configuração
+    const broadcasterConfig = window.Twitch.ext.configuration.broadcaster;
+    const globalConfig = window.Twitch.ext.configuration.global;
+    const developerConfig = window.Twitch.ext.configuration.developer;
+    
+    console.log('📦 Configurações disponíveis:');
+    console.log('  - Broadcaster:', broadcasterConfig);
+    console.log('  - Global:', globalConfig);
+    console.log('  - Developer:', developerConfig);
+
+    // Tentar carregar da configuração broadcaster
+    if (broadcasterConfig && broadcasterConfig.content) {
         try {
-            const data = JSON.parse(config.content);
-            console.log('📦 Dados carregados:', data);
+            const data = JSON.parse(broadcasterConfig.content);
+            console.log('📦 Dados carregados (broadcaster):', data);
+            
+            const couponInput = document.getElementById('couponInput');
+            const previewCoupon = document.getElementById('previewCoupon');
+            const linkInput = document.getElementById('linkInput');
+            
+            if (data.coupon && couponInput && previewCoupon) {
+                couponInput.value = data.coupon;
+                previewCoupon.textContent = data.coupon;
+                console.log('✅ Cupom carregado:', data.coupon);
+            }
+            if (data.link && linkInput) {
+                linkInput.value = data.link;
+                console.log('✅ Link carregado:', data.link);
+            }
+            
+            console.log('✅ Configuração carregada com sucesso');
+            return;
+        } catch (e) {
+            console.error('❌ Erro ao carregar configuração:', e);
+        }
+    }
+    
+    // Se não encontrou, tentar global
+    if (globalConfig && globalConfig.content) {
+        try {
+            const data = JSON.parse(globalConfig.content);
+            console.log('📦 Dados carregados (global):', data);
             
             const couponInput = document.getElementById('couponInput');
             const previewCoupon = document.getElementById('previewCoupon');
@@ -88,13 +133,14 @@ function loadConfig() {
                 linkInput.value = data.link;
             }
             
-            console.log('✅ Configuração carregada com sucesso');
+            console.log('✅ Configuração global carregada');
+            return;
         } catch (e) {
-            console.error('❌ Erro ao carregar configuração:', e);
+            console.error('❌ Erro ao carregar configuração global:', e);
         }
-    } else {
-        console.log('ℹ️ Nenhuma configuração salva ainda');
     }
+    
+    console.log('ℹ️ Nenhuma configuração salva ainda');
 }
 
 function saveConfig() {
@@ -145,8 +191,20 @@ function saveConfig() {
     console.log('📤 Enviando configuração:', config);
 
     try {
-        window.Twitch.ext.configuration.set('broadcaster', '1.0', config);
-        console.log('✅ Configuração enviada com sucesso!');
+        // Salvar como broadcaster configuration
+        window.Twitch.ext.configuration.set('broadcaster', '1', config);
+        console.log('✅ Configuração broadcaster salva!');
+        
+        // Aguardar um pouco e verificar se salvou
+        setTimeout(() => {
+            const saved = window.Twitch.ext.configuration.broadcaster;
+            console.log('🔍 Verificando configuração salva:', saved);
+            if (saved && saved.content) {
+                console.log('✅ Confirmado: configuração persistida');
+            } else {
+                console.warn('⚠️ Configuração pode não ter sido persistida');
+            }
+        }, 500);
         
         // Mostrar mensagem de sucesso
         const successMsg = document.getElementById('successMessage');
